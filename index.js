@@ -19,10 +19,10 @@ module.exports = function (opts) {
       return serve('html/home.html')
     }
 
-    // Auth page
-    if (req.url.indexOf('/auth.html') === 0 && req.method == 'GET') {
+    // Other pages
+    if (opts.pages && req.method == 'GET' && opts.pages.indexOf(req.url.slice(1)) !== -1) {
       type('text/html')
-      return serve('html/auth.html')
+      return serve('html/'+req.url.slice(1))
     }
 
     // Static asset routes
